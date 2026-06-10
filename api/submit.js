@@ -61,7 +61,10 @@ module.exports = async (req, res) => {
       method: "POST",
       headers: { "api-key": process.env.BREVO_API_KEY, "Content-Type": "application/json" },
       body: JSON.stringify(payload),
-    }).catch(() => null);
+    }).catch((e) => { console.log("brevo fetch error:", e.message); return null; });
+    if (r && r.status !== 201 && r.status !== 204) {
+      console.log("brevo status:", r.status, "body:", (await r.text().catch(() => "")).slice(0, 300));
+    }
     // 201 = created, 204 = already existed and was updated
     subscribed = !!r && (r.status === 201 || r.status === 204);
   }
