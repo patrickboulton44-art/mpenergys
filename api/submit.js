@@ -42,6 +42,7 @@ module.exports = async (req, res) => {
     }).catch(() => {});
   }
 
+  let subscribed = false;
   if (consent === "yes" && process.env.BREVO_API_KEY) {
     const payload = {
       email,
@@ -56,12 +57,14 @@ module.exports = async (req, res) => {
     if (process.env.BREVO_LIST_ID) {
       payload.listIds = [Number(process.env.BREVO_LIST_ID)];
     }
-    await fetch("https://api.brevo.com/v3/contacts", {
+    const r = await fetch("https://api.brevo.com/v3/contacts", {
       method: "POST",
       headers: { "api-key": process.env.BREVO_API_KEY, "Content-Type": "application/json" },
       body: JSON.stringify(payload),
-    }).catch(() => {});
+    }).catch(() => null);
+    // 201 = created, 204 = already existed and was updated
+    subscribed = !!r && (r.status === 201 || r.status === 204);
   }
 
-  return res.status(200).json({ ok: true });
+  return res.status(200).json({ ok: true, subscribed });
 };
