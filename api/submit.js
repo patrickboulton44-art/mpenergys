@@ -61,24 +61,9 @@ module.exports = async (req, res) => {
       method: "POST",
       headers: { "api-key": process.env.BREVO_API_KEY, "Content-Type": "application/json" },
       body: JSON.stringify(payload),
-    }).catch((e) => { console.log("brevo fetch error:", e.message); return null; });
-    let detail = "";
-    if (r && r.status !== 201 && r.status !== 204) {
-      detail = (await r.text().catch(() => "")).slice(0, 300);
-      console.log("brevo status:", r.status, "body:", detail);
-    }
+    }).catch(() => null);
     // 201 = created, 204 = already existed and was updated
     subscribed = !!r && (r.status === 201 || r.status === 204);
-    if (req.headers["x-lfg-debug"] === "brevo-check") {
-      return res.status(200).json({
-        ok: true, subscribed,
-        brevoStatus: r ? r.status : "fetch failed",
-        brevoBody: detail,
-        haveKey: !!process.env.BREVO_API_KEY,
-        listIdRaw: process.env.BREVO_LIST_ID ? "set" : "missing",
-        listIdNumeric: process.env.BREVO_LIST_ID ? !isNaN(Number(process.env.BREVO_LIST_ID)) : null,
-      });
-    }
   }
 
   return res.status(200).json({ ok: true, subscribed });
