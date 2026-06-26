@@ -21,13 +21,12 @@
    "id": 4357
   },
   {
-   "name": "Stephen Flynn",
+   "name": "Douglas Lumsden",
    "constituency": "Aberdeen South",
-   "party": "Scottish National Party",
+   "party": "Conservative",
    "stance": "opposes",
-   "email": "stephen.flynn.mp@parliament.uk",
-   "note": "",
-   "id": 4735
+   "email": "douglas.lumsden.mp@parliament.uk",
+   "note": ""
   },
   {
    "name": "Seamus Logan",
@@ -111,13 +110,12 @@
    "id": 4736
   },
   {
-   "name": "Stephen Gethins",
+   "name": "Lara Bird",
    "constituency": "Arbroath and Broughty Ferry",
    "party": "Scottish National Party",
    "stance": "opposes",
-   "email": "stephen.gethins.mp@parliament.uk",
-   "note": "",
-   "id": 4434
+   "email": "lara.bird.mp@parliament.uk",
+   "note": ""
   },
   {
    "name": "Brendan O'Hara",
@@ -3207,13 +3205,13 @@
    "id": 4018
   },
   {
-   "name": "Josh Simons",
+   "name": "Andy Burnham",
    "constituency": "Makerfield",
-   "party": "Labour",
+   "party": "Labour (Co-op)",
    "stance": "opposes",
-   "email": "josh.simons.mp@parliament.uk",
+   "email": "andy.burnham.mp@parliament.uk",
    "note": "",
-   "id": 5060
+   "id": 1427
   },
   {
    "name": "John Whittingdale",
